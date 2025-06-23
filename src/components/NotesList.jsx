@@ -1,9 +1,17 @@
 import React from 'react';
 
-function NotesList(props) {
+function NotesList({notes}) {
     return (
-        <div>Liste</div>
+        notes.map((note) => (
+            <div>
+                <h6 className="mb-0 fw-semibold text-truncate flex-grow-1 me-2">
+                    {note.title || "Unbenannte Notiz"}
+                </h6>
+            </div>
+        ))
     );
 }
 
 export default NotesList;
+
+
