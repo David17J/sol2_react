@@ -1,8 +1,11 @@
 import React from 'react';
 
-function NoteDetail(props) {
+function NoteDetail({paramSelectedNote}) {
     return (
-        <div>Detail</div>
+        <>
+            <div>{paramSelectedNote?.title}</div>
+            <div>{paramSelectedNote?.description}</div>
+        </>
     );
 }
 
