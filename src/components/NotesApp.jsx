@@ -1,25 +1,19 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import NotesList from "./NotesList.jsx";
 import {Col, Container, Row} from "react-bootstrap";
 import notesJson from '../assets/notes.json';
 import NoteDetail from "./NoteDetail.jsx";
 
-function NotesApp(props) {
+function NotesApp() {
     const [notes, setNotes] = useState(null);
     const [selectedNote, setSelectedNote] = useState(null);
-    useEffect(() => {
-        setNotes(notesJson);
-    }, []);
+
     // useEffect(() => {
-    //     fetch('/assets/notes.json')
-    //         .catch(e => console.error(e))
-    //         .then(res => {
-    //             return res.json()
-    //         })
-    //         .then(json => {
-    //             setNotes(json)
-    //         });
+    //     if (notesJson) {
+    //         setNotes(notesJson);
+    //     }
     // }, []);
+
 
     const handleNoteSelect = (note) => {
         setSelectedNote(note);
@@ -37,7 +31,7 @@ function NotesApp(props) {
                         ></NotesList>
                     </Col>
                     <Col lg={8} xl={9}>
-                        <NoteDetail paramSelectedNote={selectedNote}></NoteDetail>
+                        <NoteDetail note={selectedNote}></NoteDetail>
                     </Col>
                 </Row>
 
