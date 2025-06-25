@@ -31,8 +31,15 @@ function NotesApp() {
             status: "offen",
             tags: [],
         };
-        noteService.createNote(newNote);
+        noteService.createNote(newNote).then(r =>
+            console.log("new note", r),
+        );
     };
+
+    const handleDeleteNote = (note) => {
+        noteService.deleteNote(note.id);
+    }
+
 
     return (
         <div className="bg-gradient-primary min-vh-100">
@@ -72,10 +79,13 @@ function NotesApp() {
                         <NotesList notes={notes}
                                    onNoteSelect={handleNoteSelect}
                                    onNoteCreate={handleNoteCreate}
+                                   onNoteDelete={handleDeleteNote}
                         ></NotesList>
                     </Col>
                     <Col lg={8} xl={9}>
-                        <NoteDetail note={selectedNote}></NoteDetail>
+                        <NoteDetail note={selectedNote}
+                                    onNoteDelete={handleDeleteNote}
+                        ></NoteDetail>
                     </Col>
                 </Row>
 

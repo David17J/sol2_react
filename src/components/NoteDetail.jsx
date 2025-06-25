@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Card, Col, Row} from "react-bootstrap";
 
-function NoteDetail({note, isEditing, onEdit}) {
+function NoteDetail({note, isEditing, onEdit, onNoteDelete}) {
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -46,9 +46,10 @@ function NoteDetail({note, isEditing, onEdit}) {
                                 <i className="bi bi-pencil me-1"></i>
                                 Bearbeiten
                             </Button>
-                            <Button>
+                            <Button onClick={() => onNoteDelete(note)}>
                                 <i className="bi bi-trash me-1"></i>
                                 Löschen
+
                             </Button>
                         </>
 

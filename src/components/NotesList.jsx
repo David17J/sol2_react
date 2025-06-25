@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button} from "react-bootstrap";
 
-function NotesList({notes, onNoteSelect, onNoteCreate}) {
+function NotesList({notes, onNoteSelect, onNoteCreate, onNoteDelete}) {
     return (
         <div className="sidebar slide-in-left">
             <div className="p-3 border-bottom border-opacity-10">
@@ -33,12 +33,22 @@ function NotesList({notes, onNoteSelect, onNoteCreate}) {
                                     {note.title || "Unbenannte Notiz"}
                                 </h6>
                                 <div className="d-flex align-items-center">
+                                    <Button
+                                        variant="link"
+                                        size="sm"
+                                        className="p-0 text-danger opacity-50"
+                                        onClick={(e) => onNoteDelete(note)}
+                                        title="Notiz löschen"
+                                    >
+                                        <i className="bi bi-trash"></i>
+                                    </Button>
                                 </div>
                             </div>
                             <p className="small text-muted mb-2 lh-sm">
                                 {note.description || "Keine Beschreibung"}
                             </p>
                         </div>
+
                     ))
                 }
             </div>

@@ -16,11 +16,11 @@ class NoteCrudService {
 
     async createNote(note) {
         await notesApiService.createNote(note);
-        await notesApiService.loadNotes();
+        return await notesApiService.loadNotes();
     }
 
-    deleteNote() {
-
+    async deleteNote(nodeId) {
+        await notesApiService.deleteNote(nodeId);
     }
 
     // Update an existing note
