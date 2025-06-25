@@ -14,10 +14,10 @@ function NoteDetail({note, isEditing, onEditNote, onNoteDelete, onSave, onCancel
     useEffect(() => {
         if (note) {
             setFormData({
-                title: note.title || "",
-                description: note.description || "",
-                status: note.status || "offen",
-                tags: note.tags || [],
+                title: note?.title || "",
+                description: note?.description || "",
+                status: note?.status || "offen",
+                tags: note?.tags || [],
             });
         }
     }, [note]);
@@ -256,9 +256,9 @@ function NoteDetail({note, isEditing, onEditNote, onNoteDelete, onSave, onCancel
                                             <i className="bi bi-flag me-2"></i>
                                             Status
                                         </h6>
-                                        <Badge className={`status-badge status-${note.status} me-2`}>
+                                        <Badge className={`status-badge status-${note?.status} me-2`}>
                                             {
-                                                statusOptions.find((opt) => opt.value === note.status)
+                                                statusOptions.find((opt) => opt.value === note?.status)
                                                     ?.label
                                             }
                                         </Badge>
