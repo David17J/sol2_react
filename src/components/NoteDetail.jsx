@@ -145,11 +145,11 @@ function NoteDetail({note, isEditing, onEditNote, onNoteDelete, onSave, onCancel
                                             value={formData?.status}
                                             onChange={handleInputChange}
                                         >
-                                            {/*{statusOptions.map((status) => (*/}
-                                            {/*    <option key={status.value} value={status.value}>*/}
-                                            {/*        {status.label}*/}
-                                            {/*    </option>*/}
-                                            {/*))}*/}
+                                            {statusOptions.map((status) => (
+                                                <option key={status.value} value={status.value}>
+                                                    {status.label}
+                                                </option>
+                                            ))}
                                         </Form.Select>
                                     </Form.Group>
 
