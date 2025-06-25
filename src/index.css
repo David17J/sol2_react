@@ -13,8 +13,8 @@
     -moz-osx-font-smoothing: grayscale;
     --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-warning: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
     --gradient-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    --gradient-warning: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
     --gradient-danger: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
     --gradient-info: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
     --gradient-dark: linear-gradient(135deg, #232526 0%, #414345 100%);
@@ -194,4 +194,29 @@ button:focus-visible {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--gradient-secondary);
+}
+
+/* Status badges */
+.status-badge {
+    border-radius: 20px;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-offen {
+    background: var(--gradient-warning);
+    color: white;
+}
+
+.status-bearbeitung {
+    background: var(--gradient-info);
+    color: white;
+}
+
+.status-erledigt {
+    background: var(--gradient-success);
+    color: white;
 }

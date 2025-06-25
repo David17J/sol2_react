@@ -1,5 +1,6 @@
 import React from 'react';
-import {Button} from "react-bootstrap";
+import {Badge, Button} from "react-bootstrap";
+import {statusOptions} from "../utils/Utils.js";
 
 function NotesList({notes, onNoteSelect, onNoteCreate, onNoteDelete}) {
     return (
@@ -33,6 +34,12 @@ function NotesList({notes, onNoteSelect, onNoteCreate, onNoteDelete}) {
                                     {note.title || "Unbenannte Notiz"}
                                 </h6>
                                 <div className="d-flex align-items-center">
+                                    <Badge className={`status-badge status-${note.status} me-2`}>
+                                        {
+                                            statusOptions.find((opt) => opt.value === note.status)
+                                                ?.label
+                                        }
+                                    </Badge>
                                     <Button
                                         variant="link"
                                         size="sm"

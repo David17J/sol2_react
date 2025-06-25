@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Card, Col, Form, InputGroup, Row} from "react-bootstrap";
+import {Badge, Button, Card, Col, Form, InputGroup, Row} from "react-bootstrap";
+import {statusOptions} from "../utils/Utils.js";
 
 function NoteDetail({note, isEditing, onEditNote, onNoteDelete, onSave, onCancel}) {
 
@@ -255,6 +256,12 @@ function NoteDetail({note, isEditing, onEditNote, onNoteDelete, onSave, onCancel
                                             <i className="bi bi-flag me-2"></i>
                                             Status
                                         </h6>
+                                        <Badge className={`status-badge status-${note.status} me-2`}>
+                                            {
+                                                statusOptions.find((opt) => opt.value === note.status)
+                                                    ?.label
+                                            }
+                                        </Badge>
                                     </div>
 
                                     {/* Tags */}
