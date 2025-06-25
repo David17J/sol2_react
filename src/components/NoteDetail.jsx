@@ -62,7 +62,7 @@ function NoteDetail({note, isEditing, onEditNote, onNoteDelete, onSave, onCancel
                                             size="sm"
                                             onClick={() => onSave(formData)}
                                     >
-                                        <i className="bi bi-pencil me-1"></i>
+                                        <i className="bi bi-check-circle  me-1"></i>
                                         Speichern
                                     </Button>
                                     <Button onClick={() => onCancel()}>
