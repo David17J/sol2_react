@@ -1,24 +1,37 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import NotesList from "./NotesList.jsx";
 import {Button, Col, Container, Nav, Navbar, Row} from "react-bootstrap";
-import notesJson from '../assets/notes.json';
+//import notesJson from '../assets/notes.json';
 import NoteDetail from "./NoteDetail.jsx";
+import noteService from '../services/NoteCrudService';
 
 function NotesApp() {
-    const [notes, setNotes] = useState(null);
+    const [notes, setNotes] = useState([]);
     const [selectedNote, setSelectedNote] = useState(null);
 
-    // useEffect(() => {
-    //     if (notesJson) {
-    //         setNotes(notesJson);
-    //     }
-    // }, []);
+    useEffect(() => {
+        noteService.loadNotes().then(
+            (notes) => {
+                setNotes(notes);
+            }
+        )
+    }, [notes]);
 
 
     const handleNoteSelect = (note) => {
         setSelectedNote(note);
         // setIsEditing(false);
         console.log(note.title);
+    };
+
+    const handleNoteCreate = () => {
+        const newNote = {
+            title: "Neue Notiz",
+            description: "",
+            status: "offen",
+            tags: [],
+        };
+        noteService.createNote(newNote);
     };
 
     return (
@@ -56,8 +69,9 @@ function NotesApp() {
             <Container fluid className="h-100 p-0">
                 <Row className="g-0 h-100">
                     <Col lg={4} xl={3} className="d-lg-block">
-                        <NotesList notes={notesJson}
+                        <NotesList notes={notes}
                                    onNoteSelect={handleNoteSelect}
+                                   onNoteCreate={handleNoteCreate}
                         ></NotesList>
                     </Col>
                     <Col lg={8} xl={9}>

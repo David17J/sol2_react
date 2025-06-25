@@ -1,16 +1,24 @@
 import React from 'react';
+import {Button} from "react-bootstrap";
 
-function NotesList({notes, onNoteSelect}) {
+function NotesList({notes, onNoteSelect, onNoteCreate}) {
     return (
         <div className="sidebar slide-in-left">
             <div className="p-3 border-bottom border-opacity-10">
 
-                {/* Suche*/}
+                {/* Suche Meine Suche */}
                 <div className="d-flex justify-content-between align-items-center mb-3">
                     <h5 className="mb-0 fw-bold">
                         <i className="bi bi-list-ul me-2"></i>
                         Meine Notizen
                     </h5>
+                    <Button
+                        size="sm"
+                        className="btn-gradient-primary"
+                        onClick={onNoteCreate}
+                    >
+                        <i className="bi bi-plus-lg"></i>
+                    </Button>
                 </div>
             </div>
 
