@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Card, Col, Form, InputGroup, Row} from "react-bootstrap";
 
-function NoteDetail({note, isEditing, onEditNote, onNoteDelete, onSave}) {
+function NoteDetail({note, isEditing, onEditNote, onNoteDelete, onSave, onCancel}) {
 
     const [formData, setFormData] = useState({
         title: "",
@@ -59,11 +59,12 @@ function NoteDetail({note, isEditing, onEditNote, onNoteDelete, onSave}) {
                                     <Button type="submit" className="me-2"
                                             variant="outline-primary"
                                             size="sm"
+                                            onClick={() => onSave(formData)}
                                     >
                                         <i className="bi bi-pencil me-1"></i>
                                         Speichern
                                     </Button>
-                                    <Button onClick={() => onNoteDelete(note)}>
+                                    <Button onClick={() => onCancel()}>
                                         <i className="bi bi-trash me-1"></i>
                                         Abbrechen
                                     </Button>

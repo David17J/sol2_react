@@ -51,13 +51,15 @@ function NotesApp() {
                     description: formData.description,
                     status: formData.status,
                 }
-                const updatedNote = noteService.updateNote(note);
+                const updatedNoteObservable = noteService.updateNote(note);
                 // setNotes((prev) =>
                 //     prev.map((note) =>
                 //         note.id === selectedNote.id ? updatedNote : note,
                 //     ),
                 // );
-                setSelectedNote(updatedNote);
+                updatedNoteObservable.then((updatedNote) => {
+                    setSelectedNote(updatedNote);
+                })
             }
             setIsEditing(false);
             loadNotes(); // Refresh to ensure proper sorting
@@ -69,6 +71,11 @@ function NotesApp() {
     const handleEditNote = () => {
         setIsEditing(true);
     }
+
+    const handleNoteCancel = () => {
+        setIsEditing(false);
+    }
+
 
     return (
         <div className="bg-gradient-primary min-vh-100">
@@ -117,6 +124,7 @@ function NotesApp() {
                                     onNoteDelete={handleDeleteNote}
                                     onEditNote={handleEditNote}
                                     onSave={handleNoteSave}
+                                    onCancel={handleNoteCancel}
                         ></NoteDetail>
                     </Col>
                 </Row>
