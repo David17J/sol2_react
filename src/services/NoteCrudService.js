@@ -15,7 +15,7 @@ class NoteCrudService {
     }
 
     async createNote(note) {
-        await notesApiService.createNote(note);
+        await notesApiService.saveNote(note);
         return await notesApiService.loadNotes();
     }
 
@@ -24,8 +24,8 @@ class NoteCrudService {
     }
 
     // Update an existing note
-    updateNote(note) {
-
+    async updateNote(note) {
+        return await notesApiService.saveNote(note);
     }
 
 }

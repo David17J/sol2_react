@@ -8,6 +8,7 @@ import noteService from '../services/NoteCrudService';
 function NotesApp() {
     const [notes, setNotes] = useState([]);
     const [selectedNote, setSelectedNote] = useState(null);
+    const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
         noteService.loadNotes().then(
@@ -40,6 +41,34 @@ function NotesApp() {
         noteService.deleteNote(note.id);
     }
 
+    const handleNoteSave = (formData) => {
+        try {
+            if (selectedNote.id) {
+                // Update existing note
+                const note = {
+                    id: selectedNote.id,
+                    title: formData.title,
+                    description: formData.description,
+                    status: formData.status,
+                }
+                const updatedNote = noteService.updateNote(note);
+                // setNotes((prev) =>
+                //     prev.map((note) =>
+                //         note.id === selectedNote.id ? updatedNote : note,
+                //     ),
+                // );
+                setSelectedNote(updatedNote);
+            }
+            setIsEditing(false);
+            loadNotes(); // Refresh to ensure proper sorting
+        } catch (error) {
+            console.error("Fehler beim Speichern der Notiz:", error);
+        }
+    };
+
+    const handleEditNote = () => {
+        setIsEditing(true);
+    }
 
     return (
         <div className="bg-gradient-primary min-vh-100">
@@ -84,7 +113,10 @@ function NotesApp() {
                     </Col>
                     <Col lg={8} xl={9}>
                         <NoteDetail note={selectedNote}
+                                    isEditing={isEditing}
                                     onNoteDelete={handleDeleteNote}
+                                    onEditNote={handleEditNote}
+                                    onSave={handleNoteSave}
                         ></NoteDetail>
                     </Col>
                 </Row>

@@ -16,7 +16,7 @@ class NotesApiService {
         return res.json();
     }
 
-    async createNote(note) {
+    async saveNote(note) {
         const res = await fetch(API_URL, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
